@@ -1,0 +1,28 @@
+<form action="" method="post">
+          Cari Beradasarkan
+          <select name="pilih">
+            <option value="id_tanggapan">ID Tanggapan</option>
+            <option value="id_pengaduan">ID Pengaduan</option>
+            <option value="tgl_tanggapan">Tanggal Tanggapan</option>
+            <option value="tgl_tanggapan">Tanggal Tanggapan</option>
+          </select>
+          <input type="text" name="tekscari" size="24">
+          <input type="submit" name="cari" value="Cari">
+          <input type="submit" name="semua" value="Tampilkan Semua">
+</form>
+
+....
+
+<?php
+            include "koneksi.php";
+            $tampil = "";
+            if(isset($_POST['cari'])){
+              $pilih = $_POST['pilih'];
+              $tekscari = $_POST['tekscari'];
+              $tampil = mysqli_query($koneksi, "select * from tanggapan where $pilih like '%$tekscari%'");
+            } else {
+              $tampil = mysqli_query($koneksi, "select * from tanggapan");
+            }
+            foreach ($tampil as $row){
+            ?>
+
